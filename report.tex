@@ -1,0 +1,43 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+\usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={<pdf title here>}, pdfauthor={<author's name here>}, pdfsubject={<subject here>}, pdfkeywords={<keywords here>}]{hyperref}
+%\usepackage[final]{pdfpages} %for embedding another pdf, remove if not required
+\usepackage[margin=1.2in]{geometry}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{pdflscape}
+\usepackage{tabularx}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
+\begin{document}
+\renewcommand\bibname{References} %Renames "Bibliography" to "References" on ref page
+
+%include other pages
+\input{title}
+\input{certificate}
+\pagenumbering{roman}
+\input{abstract}
+\input{acknow}
+\tableofcontents
+\listoffigures
+
+\newpage
+\pagenumbering{arabic}
+
+\input{prob-definition}
+\input{introduction}
+\input{litReview}
+\input{background}
+\input{approach}
+\input{example}
+\input{results}
+\input{future-work}
+\input{conclusion}
+\input{ref}
+\input{appn1}
+%\input{appn2}
+
+\end{document}
+	

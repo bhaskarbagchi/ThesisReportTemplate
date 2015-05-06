@@ -1,0 +1,143 @@
+\chapter{An Example}
+
+In this chapter we will discuss with an example the actual working of the recommender with a realistic example. We will take an input and begin the analysis step--by--step. Let the user has three items in the shopping cart, which are as follows:
+\begin{itemize}
+\item Light Brown Skirt
+\item Dark Green Shirt
+\item Brown Scarf
+\end{itemize}
+
+As a first step, we take the inputs as part feature in 2-tuple format \\
+$p_1$ = \textit{Skirt $\rightarrow$ Light Brown} \\
+$p_2$ = \textit{Shirt $\rightarrow$ Dark Green} \\
+$p_3$ = \textit{Scarf $\rightarrow$ Brown}\\
+
+\section{Similarity}
+Now for each of the part feature, we find the neighbors and corresponding score of similarity measure. For this we do a BFS to the node of input part feature and for each neighbor calculate the simrank score. The Neighbors with corresponding simrank scores are presented in \textit{Table}\ref{table:neighbor1}, \textit{Table}\ref{table:neighbor2} and \textit{Table}\ref{table:neighbor3}
+\begin{table}
+\centering
+\caption{Neighbors for Light Brown Skirt}
+\begin{tabular}{|c|c|c|}
+\hline
+Node No. & Feature & Simrank Score\\
+\hline\hline
+34 & \textit{Top $\rightarrow$ Off White} & 0.0024232180348514195 \\
+395 & \textit{Top $\rightarrow$ Peach} & 0.0036795985834136963 \\
+495 & \textit{Bag $\rightarrow$ Handmade} & 0.007307627187923889 \\
+18 & \textit{Blouse $\rightarrow$ White} & 0.001810453655830971 \\
+494 & \textit{Glasses $\rightarrow$ Gray} & 0.0073076271855647395 \\
+321 & \textit{Bag $\rightarrow$ Dark Gray} & 0.002073684223076003 \\
+381 & \textit{Bag $\rightarrow$ Amethyst} & 0.004012744082021973 \\
+24 & \textit{Boots $\rightarrow$ White} & 7.157687783842247E-4 \\
+298 & \textit{Tights $\rightarrow$ Silver} & 0.0016980449345485899 \\
+367 & \textit{Boots $\rightarrow$ Maroon} & 0.003651443389923733 \\
+496 & \textit{Shoes $\rightarrow$ Flats} & 0.0072933558373829074 \\
+\hline\end{tabular}
+\label{table:neighbor1}
+\end{table}
+
+\begin{table}
+\centering
+\caption{Neighbors for Dark Green}
+\begin{tabular}{|c|c|c|}
+\hline
+Node No. & Feature & Simrank Score\\
+\hline\hline
+509 & \textit{Purse $\rightarrow$ Brown} & 0.005153511903097642 \\
+510 & \textit{T-shirt $\rightarrow$ Eggshell} & 0.005153511958756549 \\
+340 & \textit{Necklace $\rightarrow$ } & 7.138473587161387E-4 \\
+511 & \textit{Hat $\rightarrow$ Neutral} & 0.0022735552806618085 \\
+512 & \textit{Boots $\rightarrow$ Heather Gray} & 0.0015633349481407172 \\
+504 & \textit{Loafer $\rightarrow$ Brown} & 4.932201992766598E-4 \\
+6 & \textit{Jacket $\rightarrow$ Sky Blue} & 0.0013077265455576177 \\
+351 & \textit{Skirt $\rightarrow$ Bubble Gum} & 0.0018491842574126678 \\
+119 & \textit{Shoes $\rightarrow$ Black} & 6.850209148704326E-5 \\
+16 & \textit{Dress $\rightarrow$ Navy} & 9.234644641127203E-4 \\
+115 & \textit{Jacket $\rightarrow$ Crimson} & 2.6413410667371073E-4 \\
+364 & \textit{Skirt $\rightarrow$ Maroon} & 0.001843020532138039 \\
+366 & \textit{Earrings $\rightarrow$ Green} & 0.001133841788133361 \\
+57 & \textit{Skirt $\rightarrow$ Black} & 0.0014119021582344213 \\
+28 & \textit{Boots $\rightarrow$ Black} & 0.0010103833088949928 \\
+61 & \textit{Hat $\rightarrow$ Black} & 9.687164729080336E-4 \\
+\hline\end{tabular}
+\label{table:neighbor2}
+\end{table}
+
+\begin{table}
+\centering
+\caption{Neighbors for Brown Scarf}
+\begin{tabular}{|c|c|c|}
+\hline
+Node No. & Feature & Simrank Score\\
+\hline\hline
+17 & \textit{Bag $\rightarrow$ White} & 0.005678252182894807 \\
+84 & \textit{Shirt $\rightarrow$ Black} & 0.0019481985857470335 \\
+50 & \textit{Top $\rightarrow$ Black} & 0.0012562560345584332 \\
+57 & \textit{Skirt $\rightarrow$ Black} & 0.0018072561827211103 \\
+167 & \textit{Hat $\rightarrow$ Fedora} & 0.0030579584078584115 \\
+28 & \textit{Boots $\rightarrow$ Black} & 0.0012206353776358363 \\
+61 & \textit{Hat $\rightarrow$ Black} & 0.0013121156362252237 \\
+165 & \textit{Coat $\rightarrow$ Olive Green} & 0.010810194265580369 \\
+164 & \textit{Bracelet $\rightarrow$ Silver} & 4.3688215287610927E-4 \\
+\hline\end{tabular}
+\label{table:neighbor3}
+\end{table}
+
+\section{Nearest Neighbor}
+Since  the top 5 neighbors of each feature are returned, the following part features are obtained as recommendation for individual items. The results for our input is given in \textit{Table} \ref{table:individualReco}
+\begin{table}
+\centering
+\caption{Individual recommendation for each input}
+\begin{tabular}{|c|c|c|}
+\hline
+Light Brown Skirt & Dark Green Shirt & Brown Scarf\\
+\hline\hline
+495 & 510 &  165 \\
+494 & 509 &  17 \\
+496 & 511 &  167 \\
+381 & 351 &  84 \\
+395 & 364 &  57 \\
+\hline\end{tabular}
+\label{table:individualReco}
+\end{table}
+
+
+\section{Rank Aggregation}
+Once the ordered rank list for each feature is received, we follow the Broda's scoring technique and score each part feature in each list, the following is the broda score for each part--feature obtained. The Broda's scores for nodes in our case is presented in \textit{Table} \ref{table:broda}
+
+\begin{table}
+\centering
+\caption{Broda Score for each node}
+\begin{tabular}{|c|c|c|}
+\hline
+Node No. & Broda Score\\
+\hline\hline
+509 &  14 \\
+510 &  15 \\
+511 &  13 \\
+381 &  12 \\
+351 &  12 \\
+167 &  13 \\
+496 &  13 \\
+165 &  15 \\
+395 &  11 \\
+17  & 14 \\
+84  & 12 \\
+495 &  15 \\
+494 &  14 \\
+364 &  11 \\
+57  & 11 \\
+\hline\end{tabular}
+\label{table:broda}
+\end{table}
+The final recommendation is the list of 10 features with the highest Broda's score. Thus the final recommendation is as follows: \\
+495: Bag $\rightarrow$ Handmade \\
+165: Coat $\rightarrow$ Olive Green \\
+510: T-shirt $\rightarrow$ Eggshell \\
+494: Glasses $\rightarrow$ Gray \\
+17: Bag $\rightarrow$ White \\
+509: Purse $\rightarrow$ Brown \\
+119: Shoes $\rightarrow$ Flats \\
+167: Hat $\rightarrow$ Fedora \\
+511: Hat $\rightarrow$ Neutral \\
+84: Shirt $\rightarrow$ Black \\
